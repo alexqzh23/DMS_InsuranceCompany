@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Quote</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .form-container {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .form-checkbox label {
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Insurance Form</h2>
+        <form method="POST" action="{{ url_for('generate_quote', user_id=session.get('user_id')) }}">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" name="height" required>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight" required>
+
+            <div class="form-checkbox">
+                <input type="checkbox" id="smoking" name="smoking" value="1">
+                <label for="smoking">Smoking</label>
+            </div>
+
+            <div class="form-checkbox">
+                <input type="checkbox" id="chronic_disease" name="chronic_disease" value="1">
+                <label for="chronic_disease">Chronic Disease</label>
+            </div>
+
+            <label for="policy_type">Policy Type:</label>
+            <select id="policy_type" name="policy_type" required>
+                <option value="Health Insurance">Health Insurance</option>
+                <option value="Car Insurance">Car Insurance</option>
+                <option value="Home Insurance">Home Insurance</option>
+            </select>
+
+            <label for="subproduct">SubProduct:</label>
+            <select id="subproduct" name="subproduct" required>
+                <option value="Standard">Standard</option>
+                <option value="Premium">Premium</option>
+                <option value="Gold">Gold</option>
+            </select>
+
+            <button type="submit">Generate Quote</button>
+        </form>
+    </div>
+</body>
+
+</html>
